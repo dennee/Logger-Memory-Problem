@@ -45,7 +45,6 @@ namespace lmp.UrlCollector.UrlCollector
                 GetUrlsCollection(url, webClient);
                 _urls = _urls.Distinct().ToList();
                 index = _urls.Count < (index + 1) ? 0 : index + 1;
-                Debug.WriteLine($"index: {index} url: {url}");
                 UpdateProgress(_urls.Count, maxCount);
             }
         }
@@ -59,11 +58,15 @@ namespace lmp.UrlCollector.UrlCollector
         {
             try
             {
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
                 var html = webClient.DownloadString(url);
                 var urls = GetUrlsValues(html);
                 _urls.AddRange(urls);
                 _urls = _urls.Distinct().ToList();
                 _urls.RemoveAll(string.IsNullOrWhiteSpace);
+                stopwatch.Stop();
+                Debug.WriteLine($"Url: {url} Processed time: {stopwatch.ElapsedMilliseconds}ms");
             }
             catch
             {
