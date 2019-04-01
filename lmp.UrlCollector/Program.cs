@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 using lmp.UrlCollector.UrlCollector;
 
@@ -8,6 +10,11 @@ namespace lmp.UrlCollector
 {
     class MainClass
     {
+        /// <summary>
+        /// The name of file with urls
+        /// </summary>
+        private const string FILE_NAME = "urls.txt";
+
         public static void Main(string[] args)
         {
             var parsedArgs = ParseArgs(args);
@@ -21,12 +28,11 @@ namespace lmp.UrlCollector
             urlCollector.ProgressUpdated += UrlCollectorOnProgressUpdated;
             urlCollector.Collect(parsedArgs["url"], int.Parse(parsedArgs["count"]));
 
-            Console.WriteLine("Finished");
+            Console.WriteLine("Try to write found urls to file");
 
-            foreach (var url in urlCollector.Urls)
-            {
-                Console.WriteLine(url);
-            }
+            WriteFile(urlCollector.Urls);
+
+            Console.WriteLine("File was wrote successfully");
 
             Console.ReadKey();
         }
@@ -79,6 +85,20 @@ namespace lmp.UrlCollector
 
             Console.SetCursorPosition(0, positionY);
             Console.Write($"{progress.Progress}% {progress.CurrentValue}/{progress.MaxValue}");
+        }
+
+        /// <summary>
+        /// Writes the <paramref name="urls"/> to file
+        /// </summary>
+        /// <param name="urls">Collected urls</param>
+        private static void WriteFile(ICollection<string> urls)
+        {
+            var content = string.Join("\r\n", urls);
+            using (var stream = File.Open(FILE_NAME, FileMode.Create, FileAccess.Write))
+            {
+                var buffer = Encoding.UTF8.GetBytes(content);
+                stream.Write(buffer, 0, buffer.Length);
+            }
         }
     }
 }
