@@ -36,17 +36,12 @@ namespace lmp.UrlCollector.UrlCollector
         public void Collect(string startPoint, int maxCount)
         {
             var webClient = new WebClient();
-            var startPointContent = webClient.DownloadString(startPoint);
-            var urls = GetUrls(startPointContent);
-            _urls.AddRange(urls);
-            _urls = _urls.Distinct().ToList();
+            GetUrlsCollection(startPoint, webClient);
             var index = 0;
-            while(_urls.Count < maxCount)
+            while (_urls.Count < maxCount)
             {
                 var url = _urls[index];
-                var html = webClient.DownloadString(url);
-                urls = GetUrls(html);
-                _urls.AddRange(urls);
+                GetUrlsCollection(url, webClient);
                 _urls = _urls.Distinct().ToList();
                 index = _urls.Count < (index + 1) ? 0 : index + 1;
                 UpdateProgress(_urls.Count, maxCount);
@@ -54,11 +49,25 @@ namespace lmp.UrlCollector.UrlCollector
         }
 
         /// <summary>
+        /// Gets the urls
+        /// </summary>
+        /// <param name="url">The start point</param>
+        /// <param name="webClient">The client for sending or receiving data</param>
+        private void GetUrlsCollection(string url, WebClient webClient)
+        {
+            var html = webClient.DownloadString(url);
+            var urls = GetUrlsValues(html);
+            _urls.AddRange(urls);
+            _urls = _urls.Distinct().ToList();
+            _urls.RemoveAll(string.IsNullOrWhiteSpace);
+        }
+
+        /// <summary>
         /// Gets urls from HTML page
         /// </summary>
         /// <returns>The urls collection</returns>
         /// <param name="html">The page content</param>
-        private ICollection<string> GetUrls(string html)
+        private ICollection<string> GetUrlsValues(string html)
         {
             var urls = new List<string>();
             var urlTagPattern = "<a(.*?)>(.*?)</a>";
