@@ -55,11 +55,18 @@ namespace lmp.UrlCollector.UrlCollector
         /// <param name="webClient">The client for sending or receiving data</param>
         private void GetUrlsCollection(string url, WebClient webClient)
         {
-            var html = webClient.DownloadString(url);
-            var urls = GetUrlsValues(html);
-            _urls.AddRange(urls);
-            _urls = _urls.Distinct().ToList();
-            _urls.RemoveAll(string.IsNullOrWhiteSpace);
+            try
+            {
+                var html = webClient.DownloadString(url);
+                var urls = GetUrlsValues(html);
+                _urls.AddRange(urls);
+                _urls = _urls.Distinct().ToList();
+                _urls.RemoveAll(string.IsNullOrWhiteSpace);
+            }
+            catch
+            {
+                return;
+            }
         }
 
         /// <summary>
