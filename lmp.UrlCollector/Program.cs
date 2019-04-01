@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using lmp.UrlCollector.UrlCollector;
 
 namespace lmp.UrlCollector
 {
@@ -15,6 +16,18 @@ namespace lmp.UrlCollector
             {
                 Console.WriteLine($"--{keyValuePair.Key}={keyValuePair.Value}");
             }
+
+            var urlCollector = new UrlsCollector();
+            urlCollector.ProgressUpdated += UrlCollectorOnProgressUpdated;
+            urlCollector.Collect(parsedArgs["url"], int.Parse(parsedArgs["count"]));
+
+            Console.WriteLine("Finished");
+
+            foreach (var url in urlCollector.Urls)
+            {
+                Console.WriteLine(url);
+            }
+
             Console.ReadKey();
         }
 
@@ -44,6 +57,28 @@ namespace lmp.UrlCollector
             }
 
             return parsedArgs;
+        }
+
+        /// <summary>
+        /// Handles the progress updating event
+        /// </summary>
+        /// <param name="sender">Event source</param>
+        /// <param name="progress">Current progress</param>
+        private static void UrlCollectorOnProgressUpdated(object sender, ProgressUpdatedEventArgs progress)
+        {
+            DisplayProgress(progress);
+        }
+
+        /// <summary>
+        /// Displays the progress on the screen
+        /// </summary>
+        /// <param name="progress">Current progress</param>
+        private static void DisplayProgress(ProgressUpdatedEventArgs progress)
+        {
+            var positionY = Console.CursorTop;
+
+            Console.SetCursorPosition(0, positionY);
+            Console.Write($"{progress.Progress}% {progress.CurrentValue}/{progress.MaxValue}");
         }
     }
 }
