@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
@@ -44,6 +45,7 @@ namespace lmp.UrlCollector.UrlCollector
                 GetUrlsCollection(url, webClient);
                 _urls = _urls.Distinct().ToList();
                 index = _urls.Count < (index + 1) ? 0 : index + 1;
+                Debug.WriteLine($"index: {index} url: {url}");
                 UpdateProgress(_urls.Count, maxCount);
             }
         }
