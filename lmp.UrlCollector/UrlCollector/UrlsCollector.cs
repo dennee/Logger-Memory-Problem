@@ -39,6 +39,7 @@ namespace lmp.UrlCollector.UrlCollector
             var startPointContent = webClient.DownloadString(startPoint);
             var urls = GetUrls(startPointContent);
             _urls.AddRange(urls);
+            _urls = _urls.Distinct().ToList();
             var index = 0;
             while(_urls.Count < maxCount)
             {
@@ -46,7 +47,7 @@ namespace lmp.UrlCollector.UrlCollector
                 var html = webClient.DownloadString(url);
                 urls = GetUrls(html);
                 _urls.AddRange(urls);
-                _urls.Distinct();
+                _urls = _urls.Distinct().ToList();
                 index = _urls.Count < (index + 1) ? 0 : index + 1;
                 UpdateProgress(_urls.Count, maxCount);
             }
