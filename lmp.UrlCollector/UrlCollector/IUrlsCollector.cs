@@ -16,7 +16,7 @@ namespace lmp.UrlCollector.UrlCollector
         /// <summary>
         /// Occurs when progress updated.
         /// </summary>
-        event EventHandler<int> ProgressUpdated;
+        event EventHandler<ProgressUpdatedEventArgs> ProgressUpdated;
 
         /// <summary>
         /// Collects the urls from <paramref name="startPoint"/>

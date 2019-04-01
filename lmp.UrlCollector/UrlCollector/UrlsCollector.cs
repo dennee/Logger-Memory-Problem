@@ -16,7 +16,7 @@ namespace lmp.UrlCollector.UrlCollector
         /// </summary>
         public ICollection<string> Urls => _urls;
 
-        public event EventHandler<int> ProgressUpdated;
+        public event EventHandler<ProgressUpdatedEventArgs> ProgressUpdated;
 
         private List<string> _urls;
 
@@ -88,9 +88,11 @@ namespace lmp.UrlCollector.UrlCollector
         /// Ons the progress updated.
         /// </summary>
         /// <param name="progress">Updated progress value</param>
-        private void OnProgressUpdated(int progress)
+        /// <param name="currentValue">Current value.</param>
+        /// <param name="maxValue">Max value.</param>
+        private void OnProgressUpdated(int progress, int currentValue, int maxValue)
         {
-            ProgressUpdated?.Invoke(this, progress);
+            ProgressUpdated?.Invoke(this, new ProgressUpdatedEventArgs(progress, currentValue, maxValue));
         }
 
         /// <summary>
@@ -101,7 +103,7 @@ namespace lmp.UrlCollector.UrlCollector
         private void UpdateProgress(int currentValue, int maxValue)
         {
             var progress = currentValue / maxValue;
-            OnProgressUpdated(progress);
+            OnProgressUpdated(progress, currentValue, maxValue);
         }
     }
 }
