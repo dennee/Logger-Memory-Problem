@@ -24,9 +24,14 @@ namespace lmp.UrlCollector
                 Console.WriteLine($"--{keyValuePair.Key}={keyValuePair.Value}");
             }
 
+            Console.WriteLine($"Collection started: {DateTime.UtcNow.ToString("dd.MM.yyyy hh:mm:ss")}");
+
             var urlCollector = new UrlsCollector();
             urlCollector.ProgressUpdated += UrlCollectorOnProgressUpdated;
             urlCollector.Collect(parsedArgs["url"], int.Parse(parsedArgs["count"]));
+
+            Console.WriteLine();
+            Console.WriteLine($"Collection finished: {DateTime.UtcNow.ToString("dd.MM.yyyy hh:mm:ss")}");
 
             Console.WriteLine("Try to write found urls to file");
 
