@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using lmp.UrlCollector.UrlCollector;
@@ -24,18 +25,20 @@ namespace lmp.UrlCollector
                 Console.WriteLine($"--{keyValuePair.Key}={keyValuePair.Value}");
             }
 
-            Console.WriteLine($"Collection started: {DateTime.UtcNow.ToString("dd.MM.yyyy hh:mm:ss")}");
+            Console.WriteLine($"Collection started: {DateTime.UtcNow:dd.MM.yyyy hh:mm:ss}");
+
+            var count = int.Parse(parsedArgs["count"]);
 
             var urlCollector = new UrlsCollector();
             urlCollector.ProgressUpdated += UrlCollectorOnProgressUpdated;
-            urlCollector.Collect(parsedArgs["url"], int.Parse(parsedArgs["count"]));
+            urlCollector.Collect(parsedArgs["url"], count);
 
             Console.WriteLine();
-            Console.WriteLine($"Collection finished: {DateTime.UtcNow.ToString("dd.MM.yyyy hh:mm:ss")}");
+            Console.WriteLine($"Collection finished: {DateTime.UtcNow:dd.MM.yyyy hh:mm:ss}");
 
             Console.WriteLine("Try to write found urls to file");
 
-            WriteFile(urlCollector.Urls);
+            WriteFile(urlCollector.Urls.Skip(0).Take(count).ToList());
 
             Console.WriteLine("File was wrote successfully");
 
