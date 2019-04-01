@@ -87,10 +87,11 @@ namespace lmp.UrlCollector.UrlCollector
         /// Updates the progress value
         /// </summary>
         /// <param name="currentValue">Current value.</param>
-        /// <param name="MaxValue">Max value.</param>
-        private void UpdateProgress(int currentValue, int MaxValue)
+        /// <param name="maxValue">Max value.</param>
+        private void UpdateProgress(int currentValue, int maxValue)
         {
-            throw new NotImplementedException();
+            var progress = currentValue / maxValue;
+            OnProgressUpdated(progress);
         }
     }
 }
