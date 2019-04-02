@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text.RegularExpressions;
 
 namespace lmp.UrlCollector.UrlCollector
@@ -36,13 +37,12 @@ namespace lmp.UrlCollector.UrlCollector
         /// <param name="maxCount">Max collection items</param>
         public void Collect(string startPoint, int maxCount)
         {
-            var webClient = new WebClient();
-            GetUrlsCollection(startPoint, webClient);
+            GetUrlsCollection(startPoint);
             var index = 0;
             while (_urls.Count < maxCount)
             {
                 var url = _urls[index];
-                GetUrlsCollection(url, webClient);
+                GetUrlsCollection(url);
                 _urls = _urls.Distinct().ToList();
                 if (_urls.Count < (index + 1))
                 {
@@ -57,21 +57,30 @@ namespace lmp.UrlCollector.UrlCollector
         /// Gets the urls
         /// </summary>
         /// <param name="url">The start point</param>
-        /// <param name="webClient">The client for sending or receiving data</param>
-        private void GetUrlsCollection(string url, WebClient webClient)
+        private void GetUrlsCollection(string url)
         {
             try
             {
-                Debug.WriteLine($"Start processing: {url}");
-                var stopwatch = new Stopwatch();
-                stopwatch.Start();
-                var html = webClient.DownloadString(url);
-                var urls = GetUrlsValues(html);
-                _urls.AddRange(urls);
-                _urls = _urls.Distinct().ToList();
-                _urls.RemoveAll(string.IsNullOrWhiteSpace);
-                stopwatch.Stop();
-                Debug.WriteLine($"Url: {url} Processed time: {stopwatch.ElapsedMilliseconds}ms");
+                using (var httpClient = new HttpClient())
+                {
+                    Debug.WriteLine($"Start processing: {url}");
+                    var stopwatch = new Stopwatch();
+                    stopwatch.Start();
+                    var response = httpClient.GetAsync(url).GetAwaiter().GetResult();
+                    if (response.IsSuccessStatusCode)
+                    {
+                        if (response.Content.Headers.ContentType.MediaType.Contains("text"))
+                        {
+                            var html = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                            var urls = GetUrlsValues(html);
+                            _urls.AddRange(urls);
+                            _urls = _urls.Distinct().ToList();
+                            _urls.RemoveAll(string.IsNullOrWhiteSpace);
+                        }
+                    }
+                    stopwatch.Stop();
+                    Debug.WriteLine($"Url: {url} Processed time: {stopwatch.ElapsedMilliseconds}ms");
+                }
             }
             catch
             {
