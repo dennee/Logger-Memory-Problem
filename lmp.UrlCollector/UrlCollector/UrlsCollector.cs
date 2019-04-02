@@ -44,7 +44,11 @@ namespace lmp.UrlCollector.UrlCollector
                 var url = _urls[index];
                 GetUrlsCollection(url, webClient);
                 _urls = _urls.Distinct().ToList();
-                index = _urls.Count < (index + 1) ? 0 : index + 1;
+                if (_urls.Count < (index + 1))
+                {
+                    break;
+                }
+                index = index + 1;
                 UpdateProgress(_urls.Count, maxCount);
             }
         }
