@@ -58,6 +58,7 @@ namespace lmp.UrlCollector.UrlCollector
         {
             try
             {
+                Debug.WriteLine($"Start processing: {url}");
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 var html = webClient.DownloadString(url);
