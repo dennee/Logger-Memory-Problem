@@ -1,5 +1,7 @@
 ﻿using System;
+using lmp.UrlsProcessorWithProblem.FakeDataGenerator;
 using Ninject.Modules;
+using NLog;
 
 namespace lmp.UrlsProcessorWithProblem
 {
@@ -7,7 +9,8 @@ namespace lmp.UrlsProcessorWithProblem
     {
         public override void Load()
         {
-            throw new NotImplementedException();
+            Bind<ILogger>().ToMethod(ctx => LoggerFactory.Create(ctx.Request.Service.FullName)).InTransientScope();
+            Bind<IFakeDataGenerator<string>>().To<StringFakeDataGenerator>().InSingletonScope();
         }
     }
 }
