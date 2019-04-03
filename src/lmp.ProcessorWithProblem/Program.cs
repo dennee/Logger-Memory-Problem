@@ -38,12 +38,14 @@ namespace lmp.UrlsProcessorWithProblem
                 processorsManager.UploadData(data);
                 processorsManager.Process();
                 logger.Info("Processing finished");
-
-                Console.ReadKey();
             }
             catch (Exception ex)
             {
                 logger.Fatal(ex, ex.Message);
+            }
+            finally
+            {
+                Console.ReadKey();
             }
         }
 
