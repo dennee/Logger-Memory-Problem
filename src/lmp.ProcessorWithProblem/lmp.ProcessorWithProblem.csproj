@@ -57,6 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataProcessorFactory.cs" />
     <Compile Include="DataProcessors\IDataProcessor.cs" />
     <Compile Include="DataProcessors\StringDataProcessor.cs" />
     <Compile Include="DataProcessors\StringLengthDataProcessor.cs" />

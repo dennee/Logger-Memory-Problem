@@ -13,6 +13,7 @@ namespace lmp.UrlsProcessorWithProblem
             Bind<ILogger>().ToMethod(ctx => LoggerFactory.Create(ctx.Request.Service.FullName)).InTransientScope();
             Bind<IFakeDataGenerator<string>>().To<StringFakeDataGenerator>().InSingletonScope();
             Bind<IDataProcessor<string, string>>().To<StringDataProcessor>().InTransientScope();
+            Bind<IDataProcessor<string, int>>().To<StringLengthDataProcessor>().InTransientScope();
         }
     }
 }
