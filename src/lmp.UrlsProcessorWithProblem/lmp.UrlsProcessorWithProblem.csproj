@@ -54,6 +54,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FakeDataGenerator\IFakeDataGenerator.cs" />
+    <Compile Include="FakeDataGenerator\StringFakeDataGenerator.cs" />
     <Compile Include="LoggerFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
