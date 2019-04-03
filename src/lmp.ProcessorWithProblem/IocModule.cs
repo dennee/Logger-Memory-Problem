@@ -1,4 +1,5 @@
 ﻿using System;
+using lmp.UrlsProcessorWithProblem.DataProcessors;
 using lmp.UrlsProcessorWithProblem.FakeDataGenerator;
 using Ninject.Modules;
 using NLog;
@@ -11,6 +12,7 @@ namespace lmp.UrlsProcessorWithProblem
         {
             Bind<ILogger>().ToMethod(ctx => LoggerFactory.Create(ctx.Request.Service.FullName)).InTransientScope();
             Bind<IFakeDataGenerator<string>>().To<StringFakeDataGenerator>().InSingletonScope();
+            Bind<IDataProcessor<string, string>>().To<StringDataProcessor>().InTransientScope();
         }
     }
 }
