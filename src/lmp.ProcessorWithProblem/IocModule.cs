@@ -14,6 +14,8 @@ namespace lmp.UrlsProcessorWithProblem
             Bind<IFakeDataGenerator<string>>().To<StringFakeDataGenerator>().InSingletonScope();
             Bind<IDataProcessor<string, string>>().To<StringDataProcessor>().InTransientScope();
             Bind<IDataProcessor<string, int>>().To<StringLengthDataProcessor>().InTransientScope();
+            Bind<DataProcessorFactory>().To<DataProcessorFactory>().InSingletonScope();
+            Bind<ProcessorsManager>().To<ProcessorsManager>().InSingletonScope();
         }
     }
 }
