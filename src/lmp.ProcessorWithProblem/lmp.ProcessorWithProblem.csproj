@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EBDE1907-8A3D-485E-BB79-780E67D8F4EE}</ProjectGuid>
+    <ProjectGuid>{FA9E5A44-37F8-479A-9506-2CF09FF4E589}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>lmp.UrlsProcessorWithProblem</RootNamespace>
     <AssemblyName>lmp.UrlsProcessorWithProblem</AssemblyName>
