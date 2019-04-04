@@ -22,13 +22,14 @@ namespace lmp.UrlsProcessorWithProblem
 
             var stringLengthDataProcessorLogger = logFactory.GetLogger($"{typeof(StringLengthDataProcessor).FullName}-{id}");
 
-            var stringLengthDataProcessor =
-                _kernel.Get<IDataProcessor<string, int>>(new ConstructorArgument("logger",
-                    stringLengthDataProcessorLogger));
+            var stringLengthDataProcessor = _kernel.Get<IDataProcessor<string, int>>(
+                new ConstructorArgument("logger", stringLengthDataProcessorLogger),
+                new ConstructorArgument("id", id));
             var stringDataProcessor =
                 _kernel.Get<IDataProcessor<string, string>>(
                     new ConstructorArgument("logFactory", logFactory),
-                    new ConstructorArgument("lengthDataProcessor", stringLengthDataProcessor));
+                    new ConstructorArgument("lengthDataProcessor", stringLengthDataProcessor),
+                    new ConstructorArgument("id", id));
 
             return stringDataProcessor;
         }
