@@ -4,7 +4,7 @@ VisualStudioVersion = 15.0.28307.539
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A8611289-A08A-4D6D-A601-8F2496CB3A80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lmp.ProcessorWithProblem", "src\lmp.ProcessorWithProblem\lmp.ProcessorWithProblem.csproj", "{EBDE1907-8A3D-485E-BB79-780E67D8F4EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lmp.ProcessorWithoutProblem", "src\lmp.ProcessorWithoutProblem\lmp.ProcessorWithoutProblem.csproj", "{EBDE1907-8A3D-485E-BB79-780E67D8F4EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
