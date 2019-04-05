@@ -7,7 +7,7 @@ namespace lmp.UrlsProcessorWithProblem.DataProcessors
     /// <summary>
     /// Implementation of <see cref="IDataProcessor{TData, TResponse}"/> for processing a string data
     /// </summary>
-    public class StringDataProcessor : IDataProcessor<string, string>, ILogged
+    public class StringDataProcessor : IDataProcessor<string, string>, ILogging
     {
         /// <summary>
         /// The ID of processor

@@ -3,7 +3,7 @@ using NLog;
 
 namespace lmp.UrlsProcessorWithProblem.DataProcessors
 {
-    public interface ILogged
+    public interface ILogging
     {
         /// <summary>
         /// Creates and manages instances of <see cref="Logger"/>
