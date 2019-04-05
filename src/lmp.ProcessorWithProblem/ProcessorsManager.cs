@@ -3,7 +3,7 @@ using System.Linq;
 using Ninject;
 using NLog;
 
-namespace lmp.UrlsProcessorWithProblem
+namespace lmp.ProcessorWithProblem
 {
     /// <summary>
     /// Manages of processors

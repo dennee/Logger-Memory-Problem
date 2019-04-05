@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace lmp.UrlsProcessorWithProblem.DataProcessors
+namespace lmp.ProcessorWithoutProblem.DataProcessors
 {
     /// <summary>
     /// Describes a data processor

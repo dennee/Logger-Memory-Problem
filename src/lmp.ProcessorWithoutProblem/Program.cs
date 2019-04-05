@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using lmp.UrlsProcessorWithProblem.FakeDataGenerator;
+using lmp.ProcessorWithoutProblem.FakeDataGenerator;
 using Ninject;
 using Ninject.Parameters;
 using NLog;
 using NLog.Config;
 
-namespace lmp.UrlsProcessorWithProblem
+namespace lmp.ProcessorWithoutProblem
 {
     class Program
     {

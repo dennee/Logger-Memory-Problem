@@ -1,7 +1,7 @@
 ﻿using System;
 using NLog;
 
-namespace lmp.UrlsProcessorWithProblem.DataProcessors
+namespace lmp.ProcessorWithoutProblem
 {
     public interface ILogging
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace lmp.UrlsProcessorWithProblem.FakeDataGenerator
+namespace lmp.ProcessorWithProblem.FakeDataGenerator
 {
     /// <summary>
     /// Describes fake data generator

@@ -1,7 +1,7 @@
 ﻿using System;
 using NLog;
 
-namespace lmp.UrlsProcessorWithProblem.DataProcessors
+namespace lmp.ProcessorWithoutProblem.DataProcessors
 {
     /// <summary>
     /// Implementation of <see cref="IDataProcessor{TData,TResponse}"/> for getting string length

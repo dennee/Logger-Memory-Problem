@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{FA9E5A44-37F8-479A-9506-2CF09FF4E589}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>lmp.UrlsProcessorWithProblem</RootNamespace>
-    <AssemblyName>lmp.UrlsProcessorWithProblem</AssemblyName>
+    <RootNamespace>lmp.ProcessorWithProblem</RootNamespace>
+    <AssemblyName>lmp.ProcessorWithProblem</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

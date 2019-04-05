@@ -1,9 +1,9 @@
 ﻿using System;
-using lmp.UrlsProcessorWithProblem.DataProcessors;
+using lmp.ProcessorWithProblem.DataProcessors;
 using Ninject;
 using Ninject.Parameters;
 
-namespace lmp.UrlsProcessorWithProblem
+namespace lmp.ProcessorWithProblem
 {
     /// <summary>
     /// Factory for creation data processors

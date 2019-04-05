@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using NLog;
 
-namespace lmp.UrlsProcessorWithProblem.DataProcessors
+namespace lmp.ProcessorWithProblem.DataProcessors
 {
     /// <summary>
     /// Implementation of <see cref="IDataProcessor{TData, TResponse}"/> for processing a string data

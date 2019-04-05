@@ -1,6 +1,6 @@
 ﻿using NLog;
 
-namespace lmp.UrlsProcessorWithProblem
+namespace lmp.ProcessorWithProblem
 {
     /// <summary>
     /// Factory for loggers creation

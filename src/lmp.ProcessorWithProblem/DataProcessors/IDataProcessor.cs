@@ -1,4 +1,4 @@
-﻿namespace lmp.UrlsProcessorWithProblem.DataProcessors
+﻿namespace lmp.ProcessorWithProblem.DataProcessors
 {
     /// <summary>
     /// Describes a data processor

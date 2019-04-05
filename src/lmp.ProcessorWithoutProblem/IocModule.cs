@@ -1,10 +1,10 @@
 ﻿using System;
-using lmp.UrlsProcessorWithProblem.DataProcessors;
-using lmp.UrlsProcessorWithProblem.FakeDataGenerator;
+using lmp.ProcessorWithoutProblem.DataProcessors;
+using lmp.ProcessorWithoutProblem.FakeDataGenerator;
 using Ninject.Modules;
 using NLog;
 
-namespace lmp.UrlsProcessorWithProblem
+namespace lmp.ProcessorWithoutProblem
 {
     public class IocModule : NinjectModule
     {

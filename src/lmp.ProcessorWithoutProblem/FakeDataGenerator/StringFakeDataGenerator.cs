@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using NLog;
 
-namespace lmp.UrlsProcessorWithProblem.FakeDataGenerator
+namespace lmp.ProcessorWithoutProblem.FakeDataGenerator
 {
     /// <summary>
     /// Implementation of <see cref="IFakeDataGenerator{T}"/>
